@@ -29,6 +29,11 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/valeh', {
+        templateUrl: 'views/valeh.html',
+        controller: 'ValehCtrl',
+        controllerAs: 'valeh'
+      })
       .otherwise({
         redirectTo: '/'
       });
