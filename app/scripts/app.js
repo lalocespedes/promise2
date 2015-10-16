@@ -16,8 +16,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.bootstrap',
-    'ui.router'
+    'ui.router',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -51,32 +51,6 @@ angular
         //  }
         //},
         //abstract: true
-      })
-      .state('contacts', {
-            template: 'views/modal.html',
-            // trigger the modal to open when this route is active
-            onEnter: ['$stateParams', '$state', '$modal',
-              function($stateParams, $state, $modal) {
-                $modal
-
-                  // handle modal open
-                    .open({
-                      template: 'okokoooo',
-                      controller: ['$scope',
-                        function($scope) {
-                          // handle after clicking Cancel button
-                          $scope.cancel = function() {
-                            $scope.$dismiss();
-                          };
-                          // close modal after clicking OK button
-                          $scope.ok = function() {
-                            $scope.$close(true);
-                          };
-                        }
-                      ]
-                    });
-              }
-            ]
       });
 
   });

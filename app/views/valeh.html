@@ -1,4 +1,4 @@
-<div class="panel panel-primary">
+<div class="panel panel-primary" ng-controller="ValehCtrl as vale">
     <div class="panel-heading">Vale al almacen de herramientas por:</div>
     <div class="panel-body">
 
@@ -15,7 +15,7 @@
         <br>
         <div class="row">
             <div class="col-md-3 col-md-offset-9">
-                <button class="btn btn-success btn-block" ui-sref="modal">Agregar Articulo</button>
+                <button class="btn btn-success btn-block" ng-click="vale.addItem()">Agregar Articulo</button>
                 <div ui-view="modal" autoscroll="false"></div>
             </div>
         </div>
@@ -40,7 +40,7 @@
         </div>
 
         <br>
-        <button class="btn btn-success btn-lg btn-block">Guardar</button>
+        <button class="btn btn-success btn-lg btn-block" ng-click="vale.save()">Guardar</button>
 
         </div>
 
