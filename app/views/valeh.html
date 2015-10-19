@@ -9,13 +9,22 @@
             </div>
             <div class="col-md-9">
                 <label for="">Nombre:</label>
-                <input type="text" class="form-control">
+                <input type="text" ng-model="asyncSelected"
+                       placeholder="Locations loaded via $http"
+                       uib-typeahead="name for name in vale.getLocation($viewValue)"
+                       typeahead-loading="loadingLocations"
+                       typeahead-no-results="noResults"
+                       class="form-control">
+                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                <div ng-show="noResults">
+                    <i class="glyphicon glyphicon-remove"></i> No Results Found
+                </div>
             </div>
         </div>
         <br>
         <div class="row">
             <div class="col-md-3 col-md-offset-9">
-                <button class="btn btn-success btn-block" ng-click="vale.addItem()">Agregar Articulo</button>
+                <a class="btn btn-success btn-block" ng-click="vale.addItem()">Agregar Articulo</a>
                 <div ui-view="modal" autoscroll="false"></div>
             </div>
         </div>
@@ -40,7 +49,7 @@
         </div>
 
         <br>
-        <button class="btn btn-success btn-lg btn-block" ng-click="vale.save()">Guardar</button>
+        <a class="btn btn-success btn-lg btn-block" ng-click="vale.save()">Guardar</a>
 
         </div>
 

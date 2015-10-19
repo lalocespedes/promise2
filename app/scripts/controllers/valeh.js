@@ -8,7 +8,7 @@
  * Controller of the promiseApp
  */
 angular.module('promiseApp')
-  .controller('ValehCtrl', function ($uibModal) {
+  .controller('ValehCtrl', function ($uibModal, $http) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -35,4 +35,19 @@ angular.module('promiseApp')
 
         };
 
+        this.getLocation = function(val) {
+
+            return $http.get('//localhost:9000/api/vales/all', {
+                params: {
+                    name: val,
+                }
+            }).then(function(response){
+
+                return response.data.map(function(item){
+                    return item.name;
+                });
+            });
+        };
+
   });
+

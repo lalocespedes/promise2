@@ -23,8 +23,6 @@ angular.module('promiseApp')
         };
 
         Modalitem.cancel = function () {
-
-            console.log("q cancel");
             $modalInstance.dismiss('cancel');
         };
 
