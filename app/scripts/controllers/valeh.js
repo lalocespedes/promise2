@@ -8,7 +8,7 @@
  * Controller of the promiseApp
  */
 angular.module('promiseApp')
-  .controller('ValehCtrl', function ($uibModal, $http) {
+  .controller('ValehCtrl', function ($uibModal, $http, EmpleadosResource) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -37,17 +37,29 @@ angular.module('promiseApp')
 
         this.getLocation = function(val) {
 
-            return $http.get('//localhost:9000/api/vales/all', {
+            return $http.get('//localhost:9000/api/empleado', {
                 params: {
-                    name: val,
+                    nombre: val
                 }
             }).then(function(response){
 
+                //console.log(response.data);
+
                 return response.data.map(function(item){
-                    return item.name;
+                    return item;
                 });
             });
         };
 
-  });
+        this.filter = function(val) {
 
+            EmpleadosResource.get({nombre: val})
+                .$promise.then(function(response){
+                    return response.map(function(item){
+                        //console.log(item.nombre)
+                        return item.nombre;
+                    });
+                });
+
+        };
+  });

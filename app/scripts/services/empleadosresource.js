@@ -12,6 +12,15 @@ angular.module('promiseApp')
     // AngularJS will instantiate a singleton by calling "new" on this function
 
 
-      return $resource("//jsonplaceholder.typicode.com/posts", {});
+      return $resource("//localhost:9000/api/empleado", {
+
+      } , {
+
+          get: {
+              method: 'GET',
+              isArray: true
+
+          }
+      });
 
   });

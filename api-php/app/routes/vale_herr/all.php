@@ -6,18 +6,34 @@
  * Time: 2:00 PM
  */
 
-$app->get('/vales/all', function() use($app) {
+use lalocespedes\Models\Empleados;
 
 
-    $results = [
+function filter ($val) {
+    if ($val) {
 
-        [
-            'name' => 'juan',
-            'color' => 'black'
-        ]
+        $results = Empleados::where('nombre', 'LIKE', '%'. $val .'%')->get();
 
-    ];
+        echo json_encode($results);
+        exit;
+    }
+};
 
-    echo json_encode($results);
+
+$app->get('/empleado', function() use($app) {
+
+    $nombre = $app->request()->get('nombre');
+
+    if($nombre) {
+
+        filter($nombre);
+
+    } else {
+
+        $results = Empleados::all();
+
+        echo json_encode($results);
+
+    }
 
 });
