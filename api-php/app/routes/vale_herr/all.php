@@ -8,17 +8,19 @@
 
 use lalocespedes\Models\Empleados;
 
-
 function filter ($val) {
+
     if ($val) {
 
-        $results = Empleados::where('nombre', 'LIKE', '%'. $val .'%')->get();
+        $results = Empleados::where('nombre', 'LIKE', '%'. $val .'%')
+            ->orWhere('numNomina', 'LIKE', '%'. $val .'%')
+            ->limit(10)
+            ->get();
 
         echo json_encode($results);
         exit;
     }
 };
-
 
 $app->get('/empleado', function() use($app) {
 
@@ -33,7 +35,6 @@ $app->get('/empleado', function() use($app) {
         $results = Empleados::all();
 
         echo json_encode($results);
-
     }
 
 });

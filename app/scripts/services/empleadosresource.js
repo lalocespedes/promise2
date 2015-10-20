@@ -11,7 +11,6 @@ angular.module('promiseApp')
   .service('EmpleadosResource', function ($resource) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
-
       return $resource("//localhost:9000/api/empleado", {
 
       } , {
@@ -19,7 +18,6 @@ angular.module('promiseApp')
           get: {
               method: 'GET',
               isArray: true
-
           }
       });
 

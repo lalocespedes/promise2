@@ -8,7 +8,7 @@
  * Controller of the promiseApp
  */
 angular.module('promiseApp')
-  .controller('ValehCtrl', function ($uibModal, $http, EmpleadosResource) {
+  .controller('ValehCtrl', function ($uibModal, $http) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -16,6 +16,9 @@ angular.module('promiseApp')
     ];
 
         var vale = this;
+
+        vale.post = {};
+        vale.post.items = [];
 
         vale.addItem = function() {
 
@@ -29,13 +32,13 @@ angular.module('promiseApp')
 
         };
 
-        this.save = function() {
+        vale.save = function() {
 
-            console.log("guardar");
+            console.log(vale.post);
 
         };
 
-        this.getLocation = function(val) {
+        vale.getEmpleadoNombre = function(val) {
 
             return $http.get('//localhost:9000/api/empleado', {
                 params: {
@@ -43,7 +46,19 @@ angular.module('promiseApp')
                 }
             }).then(function(response){
 
-                //console.log(response.data);
+                return response.data.map(function(item){
+                    return item;
+                });
+            });
+        };
+
+        vale.getEmpleadoNumero = function(val) {
+
+            return $http.get('//localhost:9000/api/empleado', {
+                params: {
+                    nombre: val
+                }
+            }).then(function(response){
 
                 return response.data.map(function(item){
                     return item;
@@ -51,15 +66,47 @@ angular.module('promiseApp')
             });
         };
 
-        this.filter = function(val) {
+        vale.onSelect = function ($item, $model, $label) {
 
-            EmpleadosResource.get({nombre: val})
-                .$promise.then(function(response){
-                    return response.map(function(item){
-                        //console.log(item.nombre)
-                        return item.nombre;
-                    });
-                });
+            vale.post.numNomina = $item.numNomina;
+            vale.post.nombre = $item.nombre;
+
+            vale.post.empId = $item.id;
 
         };
+
+        vale.getHerramienta = function(val) {
+
+            return $http.get('//localhost:9000/api/herramienta', {
+                params: {
+                    q: val
+                }
+            }).then(function(response){
+
+                return response.data.map(function(item){
+                    return item;
+                });
+            });
+
+        };
+
+        vale.onSelectHerram = function ($item) {
+
+            vale.post.items.push(
+                {
+                    codigo: $item.codigo,
+                    descripcion: $item.descripcion
+                }
+            );
+
+            vale.qty = 1;
+
+            vale.herramienta = '';
+
+        };
+
+        vale.deleteThis = function(item){
+
+            vale.post.items.splice(vale.post.items.indexOf(item), 1);
+        }
   });

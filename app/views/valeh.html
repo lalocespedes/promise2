@@ -5,13 +5,18 @@
         <div class="row">
             <div class="col-md-3">
                 <label for="">Num nomina:</label>
-                <input type="text" class="form-control">
+                <input type="text" ng-model="vale.post.numNomina" class="form-control"
+                       placeholder="Numero"
+                       uib-typeahead="value.numNomina for value in vale.getEmpleadoNumero($viewValue) | limitTo:1"
+                       typeahead-on-select="vale.onSelect($item, $model, $label)"
+                        >
             </div>
             <div class="col-md-9">
                 <label for="">Nombre:</label>
-                <input type="text" ng-model="asyncSelected"
-                       placeholder="Locations loaded via $http"
-                       uib-typeahead="value.nombre for value in vale.getLocation($viewValue)"
+                <input type="text" ng-model="vale.post.nombre"
+                       placeholder="Nombre"
+                       uib-typeahead="value.nombre for value in vale.getEmpleadoNombre($viewValue)"
+                       typeahead-on-select="vale.onSelect($item, $model, $label)"
                        typeahead-loading="loadingLocations"
                        typeahead-no-results="noResults"
                        typeahead-min-length="2"
@@ -26,7 +31,7 @@
         <br>
         <div class="row">
             <div class="col-md-3 col-md-offset-9">
-                <a class="btn btn-success btn-block" ng-click="vale.addItem()">Agregar Articulo</a>
+                <!--<a class="btn btn-success btn-block" ng-click="vale.addItem()">Agregar Articulo</a>-->
                 <div ui-view="modal" autoscroll="false"></div>
             </div>
         </div>
@@ -35,16 +40,31 @@
 
         <div class="row">
             <div class="col-md-12">
+            <input type="text" ng-model="vale.herramienta" class="form-control"
+                   placeholder="Buscar herramienta"
+                   uib-typeahead="value.descripcion for value in vale.getHerramienta($viewValue)"
+                   typeahead-on-select="vale.onSelectHerram($item, $model, $label)"
+                   typeahead-min-length="2"
+                   typeahead-template-url="HerramientaTemplate.html"
+                    >
+            </div>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-md-12">
                 <table class="table table-bordered">
                     <tr>
                         <td><strong>Cant</strong></td>
                         <td><strong>Codigo</strong></td>
                         <td><strong>Descripcion</strong></td>
+                        <td>acciones</td>
                     </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                    <tr ng-repeat="item in vale.post.items">
+                        <td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="vale.qty"></td>
+                        <td>{{ item.codigo }}</td>
+                        <td>{{ item.descripcion }}</td>
+                        <td><a ng-click="vale.deleteThis($index)" class="btn btn-danger">borrar</a></td>
                     </tr>
                 </table>
             </div>
@@ -62,5 +82,13 @@
     <a>
         <span ng-bind-html="match.model.nombre | uibTypeaheadHighlight:query"></span>
         <span ng-bind-html="match.model.numNomina | uibTypeaheadHighlight:query"></span>
+    </a>
+</script>
+
+
+<script type="text/ng-template" id="HerramientaTemplate.html">
+    <a>
+        <span ng-bind-html="match.model.codigo | uibTypeaheadHighlight:query"></span>
+        <span ng-bind-html="match.model.descripcion | uibTypeaheadHighlight:query"></span>
     </a>
 </script>

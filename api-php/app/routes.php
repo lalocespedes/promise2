@@ -10,6 +10,10 @@
 //home
 require INC_ROOT . '/app/routes/home.php';
 
+//herramientas
+require INC_ROOT . '/app/routes/herramienta/all.php';
+
 //vale herramientas
 require INC_ROOT . '/app/routes/vale_herr/store.php';
 require INC_ROOT . '/app/routes/vale_herr/all.php';
+
