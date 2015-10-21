@@ -3,19 +3,11 @@
     <div class="panel-body">
 
         <div class="row">
-            <div class="col-md-3">
-                <label for="">Num nomina:</label>
-                <input type="text" ng-model="vale.post.numNomina" class="form-control"
-                       placeholder="Numero"
-                       uib-typeahead="value.numNomina for value in vale.getEmpleadoNumero($viewValue) | limitTo:1"
-                       typeahead-on-select="vale.onSelect($item, $model, $label)"
-                        >
-            </div>
-            <div class="col-md-9">
-                <label for="">Nombre:</label>
+            <div class="col-md-12">
+                <label for="">Buscar Empleado:</label>
                 <input type="text" ng-model="vale.post.nombre"
-                       placeholder="Nombre"
-                       uib-typeahead="value.nombre for value in vale.getEmpleadoNombre($viewValue)"
+                       placeholder="Nombre - Numero nomina"
+                       uib-typeahead="value.nombre for value in vale.getEmpleado($viewValue)"
                        typeahead-on-select="vale.onSelect($item, $model, $label)"
                        typeahead-loading="loadingLocations"
                        typeahead-no-results="noResults"
@@ -28,7 +20,15 @@
                 </div>
             </div>
         </div>
-        <br>
+        <p></p>
+        <div class="row" ng-show="vale.showempleado">
+            <div class="col-md-4">
+                <small>Empleado Seleccionado:</small>
+            </div>
+            <div class="col-md-8">
+                <h2>{{ vale.empleado.nombre }} - <small>{{ vale.empleado.numnomina }}</small></h2>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-3 col-md-offset-9">
                 <!--<a class="btn btn-success btn-block" ng-click="vale.addItem()">Agregar Articulo</a>-->

@@ -17,7 +17,7 @@
             <td class="col-md-2"> {{ item.folio }}</td>
             <td> <small> {{ item.empleado.numNomina }} </small> {{ item.empleado.nombre }}</td>
             <td>{{ item.date_entered }}</td>
-            <td><a ng-click="vale.ver()" class="btn btn-primary btn-block">Ver</a></td>
+            <td><a ng-click="vales.ver(item.id)" class="btn btn-primary btn-block">Ver</a></td>
         </tr>
     </table>
 </div>

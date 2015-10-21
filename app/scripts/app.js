@@ -41,6 +41,11 @@ angular
         controller: 'ValesCtrl',
         controllerAs: 'vales'
       })
+      .when('/vales/edit/:id', {
+        templateUrl: 'views/valeedit.html',
+        controller: 'ValeeditCtrl',
+        controllerAs: 'valeEdit'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -19,6 +19,7 @@ angular.module('promiseApp')
 
         vale.post = {};
         vale.post.items = [];
+        vale.empleado = [];
 
         vale.addItem = function() {
 
@@ -36,7 +37,7 @@ angular.module('promiseApp')
 
             ValeHerramResource.save(this.post,
 
-                function success(data) {
+                function success() {
 
                     console.log("se grabo");
                     $location.path('/vales');
@@ -51,21 +52,7 @@ angular.module('promiseApp')
 
         };
 
-        vale.getEmpleadoNombre = function(val) {
-
-            return $http.get('//localhost:9000/api/empleado', {
-                params: {
-                    q: val
-                }
-            }).then(function(response){
-
-                return response.data.map(function(item){
-                    return item;
-                });
-            });
-        };
-
-        vale.getEmpleadoNumero = function(val) {
+        vale.getEmpleado = function(val) {
 
             return $http.get('//localhost:9000/api/empleado', {
                 params: {
@@ -83,8 +70,14 @@ angular.module('promiseApp')
 
             vale.post.numNomina = $item.numNomina;
             vale.post.nombre = $item.nombre;
-
             vale.post.empId = $item.id;
+
+            vale.empleado.nombre = $item.nombre;
+            vale.empleado.numnomina = $item.numNomina;
+
+            vale.searchempleado = '';
+
+            vale.showempleado = true;
 
         };
 

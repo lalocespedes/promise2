@@ -22,6 +22,18 @@ $app->get('/vales', function() use($app) {
 
 });
 
+
+$app->get('/vales/show/:id', function($id) use($app) {
+
+    $return = ValeHerram::where('id', $id)->with('empleado')->get();
+
+    $app->response->setStatus(200);
+
+    $response = $app->response();
+    $response->write(json_encode($return));
+
+});
+
 function filter ($val) {
 
     if ($val) {

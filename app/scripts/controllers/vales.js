@@ -8,7 +8,7 @@
  * Controller of the promiseApp
  */
 angular.module('promiseApp')
-  .controller('ValesCtrl', function (ValeHerramResource) {
+  .controller('ValesCtrl', function (ValeHerramResource, $location) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -18,5 +18,11 @@ angular.module('promiseApp')
         var vales = this;
 
         vales.results = ValeHerramResource.get();
+
+        vales.ver = function(id) {
+
+            $location.path('/vales/edit/' + id);
+
+        };
 
   });
