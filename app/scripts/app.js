@@ -36,6 +36,11 @@ angular
         controller: 'ValehCtrl',
         controllerAs: 'valeh'
       })
+      .when('/vales', {
+        templateUrl: 'views/vales.html',
+        controller: 'ValesCtrl',
+        controllerAs: 'vales'
+      })
       .otherwise({
         redirectTo: '/'
       });

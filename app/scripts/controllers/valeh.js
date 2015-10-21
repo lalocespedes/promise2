@@ -8,7 +8,7 @@
  * Controller of the promiseApp
  */
 angular.module('promiseApp')
-  .controller('ValehCtrl', function ($uibModal, $http) {
+  .controller('ValehCtrl', function ($uibModal, $http, $timeout, ValeHerramResource, $location) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -34,7 +34,20 @@ angular.module('promiseApp')
 
         vale.save = function() {
 
-            console.log(vale.post);
+            ValeHerramResource.save(this.post,
+
+                function success(data) {
+
+                    console.log("se grabo");
+                    $location.path('/vales');
+                },
+
+                function error(){
+                    console.log("error");
+                    $location.path('/vales');
+                }
+
+            );
 
         };
 
@@ -42,7 +55,7 @@ angular.module('promiseApp')
 
             return $http.get('//localhost:9000/api/empleado', {
                 params: {
-                    nombre: val
+                    q: val
                 }
             }).then(function(response){
 
@@ -56,7 +69,7 @@ angular.module('promiseApp')
 
             return $http.get('//localhost:9000/api/empleado', {
                 params: {
-                    nombre: val
+                    q: val
                 }
             }).then(function(response){
 
@@ -66,7 +79,7 @@ angular.module('promiseApp')
             });
         };
 
-        vale.onSelect = function ($item, $model, $label) {
+        vale.onSelect = function ($item) {
 
             vale.post.numNomina = $item.numNomina;
             vale.post.nombre = $item.nombre;
@@ -94,12 +107,12 @@ angular.module('promiseApp')
 
             vale.post.items.push(
                 {
+                    id: $item.id,
                     codigo: $item.codigo,
-                    descripcion: $item.descripcion
+                    descripcion: $item.descripcion,
+                    qty: 1
                 }
             );
-
-            vale.qty = 1;
 
             vale.herramienta = '';
 
@@ -107,6 +120,23 @@ angular.module('promiseApp')
 
         vale.deleteThis = function(item){
 
-            vale.post.items.splice(vale.post.items.indexOf(item), 1);
-        }
+            vale.post.items.splice(item, 1);
+
+        };
+
+        vale.updateqty = function(item) {
+
+            $timeout(function() {
+
+                var newvalue = vale.qty[item];
+
+                var obj = vale.post.items[item];
+
+                obj["qty"] = newvalue;
+
+                //console.log(vale.post.items);
+
+            }, 2000);
+
+        };
   });

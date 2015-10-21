@@ -8,6 +8,20 @@
 
 use lalocespedes\Models\Empleados;
 
+use lalocespedes\Models\ValeHerram;
+
+
+$app->get('/vales', function() use($app) {
+
+    $return = ValeHerram::with('empleado')->get();
+
+    $app->response->setStatus(200);
+
+    $response = $app->response();
+    $response->write(json_encode($return));
+
+});
+
 function filter ($val) {
 
     if ($val) {
@@ -24,11 +38,11 @@ function filter ($val) {
 
 $app->get('/empleado', function() use($app) {
 
-    $nombre = $app->request()->get('nombre');
+    $q = $app->request()->get('q');
 
-    if($nombre) {
+    if($q) {
 
-        filter($nombre);
+        filter($q);
 
     } else {
 

@@ -2,16 +2,16 @@
 
 /**
  * @ngdoc service
- * @name promiseApp.HerramientaResource
+ * @name promiseApp.ValeHerramResource
  * @description
- * # HerramientaResource
+ * # ValeHerramResource
  * Service in the promiseApp.
  */
 angular.module('promiseApp')
-  .service('HerramientaResource', function ($resource) {
+  .service('ValeHerramResource', function ($resource) {
     // AngularJS will instantiate a singleton by calling "new" on this function
 
-      return $resource("//localhost:9000/api/herramienta", {
+      return $resource("//localhost:9000/api/vales", {
 
       } , {
 

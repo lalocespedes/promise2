@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Vales de Herramienta Almacen</div>
+    <div class="panel-body">
+        <p>...</p>
+    </div>
+
+    <!-- Table -->
+    <table class="table">
+        <tr>
+            <td><strong>folio</strong></td>
+            <td><strong>empleado</strong></td>
+            <td><strong>fecha</strong></td>
+            <td></td>
+        </tr>
+        <tr ng-repeat="item in vales.results">
+            <td class="col-md-2"> {{ item.folio }}</td>
+            <td> <small> {{ item.empleado.numNomina }} </small> {{ item.empleado.nombre }}</td>
+            <td>{{ item.date_entered }}</td>
+            <td><a ng-click="vale.ver()" class="btn btn-primary btn-block">Ver</a></td>
+        </tr>
+    </table>
+</div>

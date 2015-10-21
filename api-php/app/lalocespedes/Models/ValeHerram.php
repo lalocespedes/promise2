@@ -24,7 +24,7 @@ class ValeHerram extends Eloquent
 
         parent::__construct($attributes); // Eloquent
         $this->getStartDateValue();
-        $this->getFolioValue();
+        //$this->getFolioValue();
     }
 
     protected $table = 'vale_herram';
@@ -48,7 +48,20 @@ class ValeHerram extends Eloquent
     }
 
     private function getFolioValue() {
-        $this->attributes['folio'] = ComprobantesGroups::where('id', 1)->first()->next_id;
+        //$this->attributes['folio'] = ComprobantesGroups::where('id', 1)->first()->next_id;
+        $folio = ComprobantesGroups::where('id', 1)->first()->next_id;
         ComprobantesGroups::where('id',1)->increment('next_id');
+
+        return $folio;
+    }
+
+    /*
+	|--------------------------------------------------------------------------
+	| Relationships
+	|--------------------------------------------------------------------------
+	*/
+    public function empleado()
+    {
+        return $this->belongsTo('lalocespedes\Models\Empleados', 'empleado_id');
     }
 }

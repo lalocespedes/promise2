@@ -58,14 +58,20 @@
                         <td><strong>Cant</strong></td>
                         <td><strong>Codigo</strong></td>
                         <td><strong>Descripcion</strong></td>
-                        <td>acciones</td>
+                        <td></td>
                     </tr>
                     <tr ng-repeat="item in vale.post.items">
-                        <td class="col-md-2"><input type="text" class="form-control input-sm" ng-model="vale.qty"></td>
+                        <td class="col-md-2"><input type="text" class="form-control input-sm" ng-init="vale.qty[$index] = item.qty"
+                                                    ng-model="vale.qty[$index]"
+                                                    ng-change="vale.updateqty($index)"
+                                >
+                        </td>
                         <td>{{ item.codigo }}</td>
                         <td>{{ item.descripcion }}</td>
-                        <td><a ng-click="vale.deleteThis($index)" class="btn btn-danger">borrar</a></td>
+                        <td><a ng-click="vale.deleteThis($index)" class="btn btn-danger btn-block">borrar</a></td>
                     </tr>
+
+
                 </table>
             </div>
         </div>
