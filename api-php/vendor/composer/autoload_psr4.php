@@ -15,6 +15,7 @@ return array(
     'Symfony\\Component\\Config\\' => array($vendorDir . '/symfony/config'),
     'Stringy\\' => array($vendorDir . '/danielstjules/stringy/src'),
     'Slim\\Views\\' => array($vendorDir . '/slim/views'),
+    'Respect\\Validation\\' => array($vendorDir . '/respect/validation/library'),
     'Phinx\\' => array($vendorDir . '/robmorgan/phinx/src/Phinx'),
     'Noodlehaus\\' => array($vendorDir . '/hassankhan/config/src'),
     'Illuminate\\Support\\' => array($vendorDir . '/illuminate/support'),

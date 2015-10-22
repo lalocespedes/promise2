@@ -1,2 +1,71 @@
+<div class="row">
 
-{{ valeEdit.resource }}
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Empleado</h3>
+            </div>
+            <div class="panel-body">
+                <h3>{{ valeEdit.empleado.numNomina }}</h3>
+                <p><small>{{ valeEdit.empleado.nombre }}</small></p>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Vale</h3>
+            </div>
+            <div class="panel-body">
+
+                <div class="col-md-6">
+                    <h2><small>Folio:</small>{{ valeEdit.resource.folio }}</h2>
+                    <p>Maquina / Depto:   Pieza / OT:</p>
+                    <p>Fecha: {{ valeEdit.resource.date_entered }}</p>
+                </div>
+
+                <div class="col-md-6">
+                    <button class="btn btn-primary btn-block">Imprmir</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Herramientas</div>
+
+                <table class="table table-bordered table-hover">
+                    <tbody>
+                    <thead>
+                    <tr bgcolor="#dcdcdc" >
+                        <th>Cant</th>
+                        <th>Codigo</th>
+                        <th>Descripcion</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tr ng-repeat="item in valeEdit.resource.items">
+                        <td class="col-md-2">{{ item.cantidad }}</td>
+                        <td>{{ item.codigo }}</td>
+                        <td>{{ item.descripcion }}</td>
+                        <td class="col-md-2">
+                            <span ng-show="item.active == 0" class="label label-success label-lg">Entregado</span>
+                            <button class="btn btn-warning" ng-show="item.active == 1">entregar</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+        </div>
+
+    </div>
+</div>

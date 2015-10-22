@@ -64,4 +64,9 @@ class ValeHerram extends Eloquent
     {
         return $this->belongsTo('lalocespedes\Models\Empleados', 'empleado_id');
     }
+
+    public function items()
+    {
+        return $this->HasMany('lalocespedes\Models\ValeHerramItems');
+    }
 }

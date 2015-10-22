@@ -3,9 +3,9 @@
     <div class="panel-body">
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <label for="">Buscar Empleado:</label>
-                <input type="text" ng-model="vale.post.nombre"
+                <input type="text" ng-model="vale.searchempleado"
                        placeholder="Nombre - Numero nomina"
                        uib-typeahead="value.nombre for value in vale.getEmpleado($viewValue)"
                        typeahead-on-select="vale.onSelect($item, $model, $label)"
@@ -19,6 +19,10 @@
                     <i class="glyphicon glyphicon-remove"></i> No Results Found
                 </div>
             </div>
+            <div class="col-md-4">
+                <label for="">Maquina - Depto</label>
+                <input type="text" class="form-control">
+            </div>
         </div>
         <p></p>
         <div class="row" ng-show="vale.showempleado">
@@ -26,7 +30,7 @@
                 <small>Empleado Seleccionado:</small>
             </div>
             <div class="col-md-8">
-                <h2>{{ vale.empleado.nombre }} - <small>{{ vale.empleado.numnomina }}</small></h2>
+                <h4>{{ vale.empleado.nombre }} - <small>{{ vale.empleado.numnomina }}</small></h4>
             </div>
         </div>
         <div class="row">
@@ -40,8 +44,9 @@
 
         <div class="row">
             <div class="col-md-12">
-            <input type="text" ng-model="vale.herramienta" class="form-control"
-                   placeholder="Buscar herramienta"
+                <label for="">Buscar Herramienta:</label>
+                <input type="text" ng-model="vale.herramienta" class="form-control"
+                   placeholder="Codigo - descripcion"
                    uib-typeahead="value.descripcion for value in vale.getHerramienta($viewValue)"
                    typeahead-on-select="vale.onSelectHerram($item, $model, $label)"
                    typeahead-min-length="2"
@@ -77,8 +82,7 @@
         </div>
 
         <br>
-        <a class="btn btn-success btn-lg btn-block" ng-click="vale.save()">Guardar</a>
-
+        <a ng-class="{disabled:vale.disablebtn}" class="btn btn-success btn-lg btn-block" ng-click="vale.save()">Guardar</a>
         </div>
 
     </div>

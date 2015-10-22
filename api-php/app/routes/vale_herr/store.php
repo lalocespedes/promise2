@@ -10,14 +10,42 @@ use lalocespedes\Models\ValeHerram;
 use lalocespedes\Models\ValeHerramItems;
 use lalocespedes\Models\ComprobantesGroups;
 
-require 'validation.php';
+use lalocespedes\Validators\ValeHerram\Item as validator;
+
+static $request = [];
 
 $app->post('/vales', function() use($app) {
 
     $request = json_decode($app->request()->getBody());
 
+    //var_dump($request);
+    //exit();
+
     //validate
 
+    $empleado_id = (isset($request->empId)) ? $request->empId : "aaaaa";
+
+    $validateValues = [
+
+        'empleado_id' => "aaaaaa"
+
+    ];
+
+    $validator = new validator;
+
+    $isValid = $validator->assert($validateValues);
+
+    echo $isValid;
+    exit;
+
+    if (!$isValid) {
+
+        $app->response->setStatus(400);
+        $response = $app->response();
+
+        $response->write(json_encode($validator->errors()));
+
+    }
 
     //save
 
@@ -42,7 +70,9 @@ $app->post('/vales', function() use($app) {
 
     }
 
-    $return = "grabado";
+    $return = [
+        "id"    => $id
+    ];
 
     $app->response->setStatus(200);
 

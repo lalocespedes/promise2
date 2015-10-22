@@ -19,6 +19,7 @@
         "robmorgan/phinx": "~0.4.4",
         "illuminate/database": "~5.0",
         "symfony/var-dumper": "~2.7",
-        "entomb/slim-json-api": "~1.1"
+        "entomb/slim-json-api": "~1.1",
+        "respect/validation": "^0.9.3"
     }
 }

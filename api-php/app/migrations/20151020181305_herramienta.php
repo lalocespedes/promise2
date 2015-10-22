@@ -31,7 +31,7 @@ class Herramienta extends AbstractMigration
         $herramienta->addColumn('codigo', 'string')
             ->addColumn('descripcion', 'string')
             ->addColumn('created_at', 'timestamp')
-            ->addColumn('updated_at', 'timestamp', array('null'    => true,'default' => null))
+            ->addColumn('updated_at', 'timestamp', array('null' => true,'default' => null))
             ->addIndex('id')
             ->create();
     }

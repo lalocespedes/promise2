@@ -9,11 +9,6 @@
  */
 angular.module('promiseApp')
   .controller('ValeeditCtrl', function ($http, $routeParams) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
 
         var vale = this;
 
@@ -23,6 +18,9 @@ angular.module('promiseApp')
         }).then(function(response){
 
             vale.resource = response.data;
+
+            vale.empleado = vale.resource.empleado;
+            vale.items = vale.resource.items;
 
             //return response.data.map(function(item){
             //    return item;

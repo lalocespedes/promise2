@@ -37,15 +37,15 @@ angular.module('promiseApp')
 
             ValeHerramResource.save(this.post,
 
-                function success() {
+                function success(data) {
 
-                    console.log("se grabo");
-                    $location.path('/vales');
+                    //console.log(data.id);
+                    //$location.path('/vales/edit/' + data.id);
                 },
 
                 function error(){
                     console.log("error");
-                    $location.path('/vales');
+                    //$location.path('/vales');
                 }
 
             );
@@ -119,15 +119,17 @@ angular.module('promiseApp')
 
         vale.updateqty = function(item) {
 
+            vale.disablebtn = true;
+
             $timeout(function() {
 
                 var newvalue = vale.qty[item];
 
                 var obj = vale.post.items[item];
 
-                obj["qty"] = newvalue;
+                obj.qty = newvalue;
 
-                //console.log(vale.post.items);
+                vale.disablebtn = false;
 
             }, 2000);
 

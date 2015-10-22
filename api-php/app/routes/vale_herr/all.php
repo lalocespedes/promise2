@@ -25,7 +25,7 @@ $app->get('/vales', function() use($app) {
 
 $app->get('/vales/show/:id', function($id) use($app) {
 
-    $return = ValeHerram::where('id', $id)->with('empleado')->get();
+    $return = ValeHerram::where('id', $id)->with('items')->with('empleado')->first();
 
     $app->response->setStatus(200);
 
