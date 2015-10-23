@@ -22,10 +22,12 @@ $app->post('/vales', function() use($app) {
     //validate
 
     $empleado_id = (isset($request->empId)) ? $request->empId : "";
+    $items = (isset($request->items)) ? $request->items : "";
 
     $validateValues = [
 
-        'empleado_id' => $empleado_id
+        'empleado_id'   => $empleado_id,
+        'items'         => $items
 
     ];
 
@@ -55,7 +57,7 @@ $app->post('/vales', function() use($app) {
 
     $id = $vale->id;
 
-    foreach($request->items as $item) {
+    foreach($items as $item) {
 
         ValeHerramItems::create([
             "vale_herram_id"    => $id,

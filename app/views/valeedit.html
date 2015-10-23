@@ -1,6 +1,6 @@
 <div class="row">
 
-    <div class="col-md-3">
+    <div class="col-xs-3">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Empleado</h3>
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="col-md-9">
+    <div class="col-xs-9">
 
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -23,12 +23,16 @@
 
                 <div class="col-md-6">
                     <h2><small>Folio:</small>{{ valeEdit.resource.folio }}</h2>
-                    <p>Maquina / Depto:   Pieza / OT:</p>
-                    <p>Fecha: {{ valeEdit.resource.date_entered }}</p>
+                    <ul class="list-inline">
+                        <li>Maquina / Depto: </li>
+                        <li>Pieza / OT:</li>
+                        <li>Fecha: {{ valeEdit.resource.date_entered }}
+                        </li>
+                    </ul>
                 </div>
 
                 <div class="col-md-6">
-                    <button class="btn btn-primary btn-block">Imprmir</button>
+                    <button class="btn btn-primary btn-block hidden-print" ng-click="valeEdit.print()">Imprmir</button>
                 </div>
 
             </div>
@@ -60,7 +64,7 @@
                         <td>{{ item.descripcion }}</td>
                         <td class="col-md-2">
                             <span ng-show="item.active == 0" class="label label-success label-lg">Entregado</span>
-                            <button class="btn btn-warning" ng-show="item.active == 1">entregar</button>
+                            <button class="btn btn-warning hidden-print" ng-show="item.active == 1">entregar</button>
                         </td>
                     </tr>
                     </tbody>

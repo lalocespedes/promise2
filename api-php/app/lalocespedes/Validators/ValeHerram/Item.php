@@ -56,6 +56,7 @@ class Item
     public function initRules()
     {
         $this->rules['empleado_id'] = V::numeric()->min(0)->notEmpty()->setName('Empleado');
+        $this->rules['items'] = V::min(0)->notEmpty()->setName('Agrega un articulo');
     }
 
     /**

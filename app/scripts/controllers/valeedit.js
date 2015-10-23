@@ -27,4 +27,12 @@ angular.module('promiseApp')
             //});
         });
 
-    });
+        vale.print = function() {
+
+            window.print();
+
+            //console.log("imprimir");
+
+        };
+
+  });

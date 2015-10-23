@@ -8,7 +8,7 @@
  * Controller of the promiseApp
  */
 angular.module('promiseApp')
-  .controller('ValehCtrl', function ($uibModal, $http, $timeout, ValeHerramResource, $location) {
+  .controller('ValehCtrl', function ($uibModal, $http, $timeout, ValeHerramResource, $location, ngToast) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
@@ -39,6 +39,8 @@ angular.module('promiseApp')
 
                 function success(data) {
 
+                    ngToast.dismiss();
+
                     $location.path('/vales/edit/' + data.id);
                 },
 
@@ -48,12 +50,10 @@ angular.module('promiseApp')
 
                         if(value) {
 
-                            console.log(value);
-
-                            //ngToast.create({
-                            //    className: 'danger',
-                            //    content: '<i class="fa fa-times fa-2x"></i> ' + value.message
-                            //});
+                            ngToast.create({
+                                className: 'danger',
+                                content: '<i class="fa fa-times fa-2x"></i> ' + value.message
+                            });
 
                         }
 
@@ -137,6 +137,19 @@ angular.module('promiseApp')
             $timeout(function() {
 
                 var newvalue = vale.qty[item];
+
+                if (newvalue == 0) {
+
+                    ngToast.create({
+                        className: 'danger',
+                        content: '<i class="fa fa-times fa-2x"></i> Error: Cantidad'
+                    });
+
+                    return false;
+
+                }
+
+                ngToast.dismiss();
 
                 var obj = vale.post.items[item];
 

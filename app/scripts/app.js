@@ -17,7 +17,9 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.router',
-    'ui.bootstrap'
+    'ui.bootstrap',
+    'ngMaterial',
+    'ngToast'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -46,6 +48,11 @@ angular
         controller: 'ValeeditCtrl',
         controllerAs: 'valeEdit'
       })
+      .when('/AddItem', {
+        templateUrl: 'views/additem.html',
+        controller: 'AdditemCtrl',
+        controllerAs: 'AddItem'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -63,4 +70,12 @@ angular
         //abstract: true
       });
 
+  }).config(['ngToastProvider', function(ngToastProvider) {
+  ngToastProvider.configure({
+    timeout: 8000,
+    animation: 'slide', // or 'fade'
+    verticalPosition: 'bottom',
+    horizontalPosition: 'right'
+
   });
+}]);

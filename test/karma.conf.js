@@ -33,6 +33,9 @@ module.exports = function(config) {
       'app/bower_components/angular-touch/angular-touch.js',
       'app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js',
       'app/bower_components/angular-ui-router/release/angular-ui-router.js',
+      'app/bower_components/angular-aria/angular-aria.js',
+      'app/bower_components/angular-material/angular-material.js',
+      'app/bower_components/ngToast/dist/ngToast.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",
