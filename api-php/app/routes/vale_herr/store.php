@@ -12,8 +12,6 @@ use lalocespedes\Models\ComprobantesGroups;
 
 use lalocespedes\Validators\ValeHerram\Item as validator;
 
-static $request = [];
-
 $app->post('/vales', function() use($app) {
 
     $request = json_decode($app->request()->getBody());
@@ -23,11 +21,11 @@ $app->post('/vales', function() use($app) {
 
     //validate
 
-    $empleado_id = (isset($request->empId)) ? $request->empId : "aaaaa";
+    $empleado_id = (isset($request->empId)) ? $request->empId : "";
 
     $validateValues = [
 
-        'empleado_id' => "aaaaaa"
+        'empleado_id' => $empleado_id
 
     ];
 
@@ -35,15 +33,13 @@ $app->post('/vales', function() use($app) {
 
     $isValid = $validator->assert($validateValues);
 
-    echo $isValid;
-    exit;
-
     if (!$isValid) {
 
         $app->response->setStatus(400);
         $response = $app->response();
-
         $response->write(json_encode($validator->errors()));
+
+        $app->stop();
 
     }
 

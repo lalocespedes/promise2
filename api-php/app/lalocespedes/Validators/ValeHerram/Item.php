@@ -55,9 +55,7 @@ class Item
      */
     public function initRules()
     {
-        $this->rules['empleado_id'] = V::numeric()->notEmpty()->setName('Empleado');
-        //$this->rules['item_price'] = V::numeric()->min(0)->notEmpty()->setName('Valor unitario');
-        //$this->rules['invoice_id'] = V::numeric()->min(0)->notEmpty()->setName('Falta registro');
+        $this->rules['empleado_id'] = V::numeric()->min(0)->notEmpty()->setName('Empleado');
     }
 
     /**
@@ -89,21 +87,15 @@ class Item
     {
         foreach ($this->rules as $rule => $validator) {
 
-            //var_dump($validator);
-
             try {
 
                 $input = isset($inputs[$rule]) ? $inputs[$rule] : '';
-
-                //var_dump($inputs);
-
-                //echo $input;
 
                 $validator->assert($input);
 
             } catch (\Respect\Validation\Exceptions\NestedValidationExceptionInterface $ex) {
 
-                //$this->errors = $ex->findMessages($this->messages);
+                $this->errors = $ex->findMessages($this->messages);
 
                 return false;
             }

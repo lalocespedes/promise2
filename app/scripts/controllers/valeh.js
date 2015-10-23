@@ -39,13 +39,26 @@ angular.module('promiseApp')
 
                 function success(data) {
 
-                    //console.log(data.id);
-                    //$location.path('/vales/edit/' + data.id);
+                    $location.path('/vales/edit/' + data.id);
                 },
 
-                function error(){
-                    console.log("error");
-                    //$location.path('/vales');
+                function error(err){
+
+                    angular.forEach(err.data, function(value, key) {
+
+                        if(value) {
+
+                            console.log(value);
+
+                            //ngToast.create({
+                            //    className: 'danger',
+                            //    content: '<i class="fa fa-times fa-2x"></i> ' + value.message
+                            //});
+
+                        }
+
+                    });
+
                 }
 
             );
