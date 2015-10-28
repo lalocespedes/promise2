@@ -19,7 +19,8 @@ angular
     'ui.router',
     'ui.bootstrap',
     'ngMaterial',
-    'ngToast'
+    'ngToast',
+    'angularUtils.directives.dirPagination'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -52,6 +53,11 @@ angular
         templateUrl: 'views/additem.html',
         controller: 'AdditemCtrl',
         controllerAs: 'AddItem'
+      })
+      .when('/herramienta', {
+        templateUrl: 'views/herramienta.html',
+        controller: 'HerramientaCtrl',
+        controllerAs: 'herramienta'
       })
       .otherwise({
         redirectTo: '/'

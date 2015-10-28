@@ -2,7 +2,15 @@
     <!-- Default panel contents -->
     <div class="panel-heading">Vales de Herramienta Almacen</div>
     <div class="panel-body">
-        <p>...</p>
+        <div class="input-group">
+
+            <input type="text" class="form-control" ng-model="search.folio">
+            <span class="input-group-addon" id="basic-addon1">
+                <span class="glyphicon glyphicon-search">
+                    <span class="sr-only">Search...</span>
+                </span>
+            </span>
+        </div>
     </div>
 
     <!-- Table -->
@@ -13,11 +21,16 @@
             <td><strong>fecha</strong></td>
             <td></td>
         </tr>
-        <tr ng-repeat="item in vales.results">
+        <tr dir-paginate="item in vales.results | filter:search | itemsPerPage: 10" current-page="vales.currentPage">
             <td class="col-md-2"> {{ item.folio }}</td>
             <td> <small> {{ item.empleado.numNomina }} </small> {{ item.empleado.nombre }}</td>
             <td>{{ item.date_entered }}</td>
             <td><a ng-click="vales.ver(item.id)" class="btn btn-primary btn-block">Ver</a></td>
         </tr>
     </table>
+
+    <div class="panel-footer text-right">
+        <dir-pagination-controls></dir-pagination-controls>
+    </div>
+
 </div>

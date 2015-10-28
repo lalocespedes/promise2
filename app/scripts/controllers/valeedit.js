@@ -8,7 +8,7 @@
  * Controller of the promiseApp
  */
 angular.module('promiseApp')
-  .controller('ValeeditCtrl', function ($http, $routeParams) {
+  .controller('ValeeditCtrl', function ($http, $routeParams, $uibModal) {
 
         var vale = this;
 
@@ -32,6 +32,18 @@ angular.module('promiseApp')
             window.print();
 
             //console.log("imprimir");
+
+        };
+
+        vale.recibir = function() {
+
+            $uibModal.open({
+                templateUrl: '',
+                controller: 'ModalInstanceCtrl',
+                size: 'md'
+            });
+
+            console.log("recibir");
 
         };
 

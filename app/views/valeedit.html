@@ -64,7 +64,7 @@
                         <td>{{ item.descripcion }}</td>
                         <td class="col-md-2">
                             <span ng-show="item.active == 0" class="label label-success label-lg">Entregado</span>
-                            <button class="btn btn-warning hidden-print" ng-show="item.active == 1">entregar</button>
+                            <button class="btn btn-warning hidden-print" ng-show="item.active == 1" ng-click="valeEdit.recibir()">entregar</button>
                         </td>
                     </tr>
                     </tbody>

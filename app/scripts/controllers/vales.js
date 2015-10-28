@@ -17,6 +17,8 @@ angular.module('promiseApp')
 
         var vales = this;
 
+        vales.currentPage = 1;
+
         vales.results = ValeHerramResource.get();
 
         vales.ver = function(id) {

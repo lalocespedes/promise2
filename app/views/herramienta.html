@@ -1,0 +1,55 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <p>Buscar herramienta</p>
+
+        <div class="input-group">
+
+            <input type="text" class="form-control" ng-model="herramienta.search" placeholder="Nombre - Codigo"
+                   uib-typeahead="value.nombre for value in herramienta.getHerramienta($viewValue)"
+                   typeahead-on-select="herramienta.onSelectHerram($item, $model, $label)"
+                   typeahead-loading="loadingLocations"
+                   typeahead-no-results="noResults"
+                   typeahead-min-length="2"
+                   typeahead-template-url="HerramientaTemplate.html"
+                    >
+            <span class="input-group-addon" id="basic-addon1">
+                <span class="glyphicon glyphicon-search">
+                    <span class="sr-only">Search...</span>
+                </span>
+            </span>
+        </div>
+
+    </div>
+
+        <!-- Table -->
+        <table class="table">
+            <tr>
+                <td><strong>#</strong></td>
+                <td><strong>folio</strong></td>
+                <td><strong>fecha</strong></td>
+                <td><strong>Codigo</strong></td>
+                <td><strong>Descripcion</strong></td>
+                <td><strong>Empleado</strong></td>
+            </tr>
+            <tr ng-repeat="vale in herramienta.vales">
+                <td> <small>{{ $index + 1 }}</small></td>
+                <td class="col-md-2"> {{ vale.folio }} </td>
+                <td class="col-md-2"> {{ vale.date_entered }} </td>
+                <td class="col-md-2"> {{ vale.codigo }}</td>
+                <td class="col-md-2"> {{ vale.descripcion}}</td>
+                <td>{{ vale.nombre }}</td>
+            </tr>
+        </table>
+    <div class="panel-footer">* Ultimos 10 movimientos</div>
+</div>
+
+</div>
+
+
+
+<script type="text/ng-template" id="HerramientaTemplate.html">
+    <a>
+        <span ng-bind-html="match.model.codigo | uibTypeaheadHighlight:query"></span>
+        <span ng-bind-html="match.model.descripcion | uibTypeaheadHighlight:query"></span>
+    </a>
+</script>

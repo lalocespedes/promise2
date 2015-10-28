@@ -20,4 +20,9 @@ class ValeHerramItems extends Eloquent
         'codigo',
         'descripcion'
     ];
+
+    public function vales() {
+
+        return $this->hasMany('lalocespedes\Models\ValeHerram', 'id');
+    }
 }
